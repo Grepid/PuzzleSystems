@@ -43,6 +43,12 @@ public abstract class Puzzle : MonoBehaviour
     [SerializeField]
     private UnityEvent OnUnComplete;
     protected abstract bool automaticCompleteChecks { get; set; }
+    public bool CheckActivatesEventEveryTick;
+    private bool m_lastKnownState;
+    protected void Awake()
+    {
+        
+    }
     protected void Start()
     {
         CompleteCheck();
@@ -54,14 +60,18 @@ public abstract class Puzzle : MonoBehaviour
 
     protected virtual void SetComplete(bool isComplete)
     {
-        IsComplete = isComplete;
+        
         if (isComplete)
         {
             if (OnComplete != null) OnComplete.Invoke();
+            IsComplete = isComplete;
+            print("complete ran");
         }
         else if(!isComplete && CanBeUnComplete)
         {
+            IsComplete = isComplete;
             if (OnUnComplete != null) OnUnComplete.Invoke();
+            print("Uncomplete ran");
         }
         
     }
@@ -72,7 +82,9 @@ public abstract class Puzzle : MonoBehaviour
     protected abstract bool CompleteCondition();
     protected virtual void CompleteCheck()
     {
-        if(CompleteCondition()) SetComplete(true);
-        else SetComplete(false);
+        bool result = CompleteCondition();
+        if (m_lastKnownState == result && !CheckActivatesEventEveryTick) return;
+        SetComplete(result);
+        m_lastKnownState = result;
     }
 }
