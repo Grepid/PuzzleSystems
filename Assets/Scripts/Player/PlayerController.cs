@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
     private void InputCheck()
     {
         if (Input.GetKeyDown(KeyCode.Space)) OnJump();
+        if(Input.GetKeyDown(KeyCode.E)) Interact();
     }
     private void OnJump()
     {
@@ -106,5 +107,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(0, jumpVelocity, 0);
         }
+    }
+    private void Interact()
+    {
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        Physics.Raycast(ray,out RaycastHit hit);
+        if (hit.collider == null) return;
+        Iinteractable interact = hit.collider.GetComponent<Iinteractable>();
+        if (interact == null) return;
+        interact.Interact();
+
     }
 }

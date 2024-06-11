@@ -42,19 +42,14 @@ public abstract class Puzzle : MonoBehaviour
     private UnityEvent OnComplete;
     [SerializeField]
     private UnityEvent OnUnComplete;
-
-    private float checkOffset;
-    private float lastCheckTime;
     protected abstract bool automaticCompleteChecks { get; set; }
     protected void Start()
     {
-        checkOffset = Random.Range(0,0.5f);
-        lastCheckTime = Time.time;
         CompleteCheck();
     }
     protected void Update()
     {
-        if (automaticCompleteChecks && Time.time >= lastCheckTime + checkOffset) { CompleteCheck(); lastCheckTime = Time.time; }
+        if (automaticCompleteChecks) CompleteCheck();
     }
 
     protected virtual void SetComplete(bool isComplete)
@@ -63,12 +58,10 @@ public abstract class Puzzle : MonoBehaviour
         if (isComplete)
         {
             if (OnComplete != null) OnComplete.Invoke();
-            print("Complete ran");
         }
         else if(!isComplete && CanBeUnComplete)
         {
             if (OnUnComplete != null) OnUnComplete.Invoke();
-            print("Uncomplete ran");
         }
         
     }

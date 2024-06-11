@@ -11,18 +11,9 @@ public class ToggleInteractPuzzle : Puzzle , Iinteractable
         get { return false; }
         set { }
     }
-    private void Update()
-    {
-        base.Update();
-        if (Input.GetKeyDown(KeyCode.E)) Interact();
-    }
     protected override bool CompleteCondition()
     {
         return false;
-    }
-    protected override void CompleteCheck()
-    {
-        base.CompleteCheck();
     }
     public void Interact()
     {
