@@ -19,24 +19,31 @@ public class TimedButton : Puzzle , Iinteractable
         base.Awake();
         if (!CanBeUnComplete) Debug.LogWarning("Timed Buttons will always override CanBeUncomplete to be true. If you intended for CanBeUncomplete to be false, try a TogglePuzzle");
         CanBeUnComplete = true;
+        m_progress = -1;
     }
 
     protected override bool CompleteCondition()
     {
         return false;
     }
-    public void Interact()
+    public bool InteractCondition()
     {
-        if (!canProlong && IsPressed) return;
-        if(canProlong && IsPressed)
+        if (!canProlong && IsPressed) return false;
+        if (canProlong && IsPressed)
         {
             m_pressTimer = 0;
+            return false;
         }
-        else
+        else if(!IsPressed)
         {
-            StartPress();
+            return true;
         }
-        
+        return false;
+    }
+
+    public void RunInteract()
+    {
+        StartPress();
     }
     private void StartPress()
     {
@@ -68,4 +75,5 @@ public class TimedButton : Puzzle , Iinteractable
         m_progress = -1;
         SetComplete(false);
     }
+
 }

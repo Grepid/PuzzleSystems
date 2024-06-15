@@ -1021,6 +1021,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   CheckActivatesEventEveryTick: 0
+  cooldown: 0.2
 --- !u!65 &2015370106
 BoxCollider:
   m_ObjectHideFlags: 0

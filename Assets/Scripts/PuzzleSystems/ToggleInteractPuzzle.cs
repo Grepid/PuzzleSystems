@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class ToggleInteractPuzzle : Puzzle , Iinteractable
 {
-    
+    private float lastInteractTime;
+    [SerializeField] private float cooldown;
     protected override bool automaticCompleteChecks
     {
         get { return false; }
@@ -15,8 +16,16 @@ public class ToggleInteractPuzzle : Puzzle , Iinteractable
     {
         return false;
     }
-    public void Interact()
+
+    public bool InteractCondition()
+    {
+        if (Time.time >= lastInteractTime + cooldown) return true;
+        return false;
+    }
+
+    public void RunInteract()
     {
         ToggleComplete();
+        lastInteractTime = Time.time;
     }
 }
