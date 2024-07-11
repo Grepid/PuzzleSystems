@@ -839,31 +839,6 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 5441553277098348329, guid: 67f971a362519474eaa8e29e917d277e,
-        type: 3}
-      propertyPath: xSens
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5441553277098348329, guid: 67f971a362519474eaa8e29e917d277e,
-        type: 3}
-      propertyPath: ySens
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5441553277098348329, guid: 67f971a362519474eaa8e29e917d277e,
-        type: 3}
-      propertyPath: gravity
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5441553277098348329, guid: 67f971a362519474eaa8e29e917d277e,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5441553277098348329, guid: 67f971a362519474eaa8e29e917d277e,
-        type: 3}
-      propertyPath: jumpVelocity
-      value: 5000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f971a362519474eaa8e29e917d277e, type: 3}
 --- !u!1 &1727160137
